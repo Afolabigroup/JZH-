@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Check Maven') {
+        stage('Check Maven Installation') {
             steps {
-                sh 'mvn -version'
+                script {
+                    // Check if Maven is installed
+                    try {
+                        sh 'mvn -version'
+                    } catch (Exception e) {
+                        error "Maven is not installed or not properly configured on this Jenkins instance."
+                    }
+                }
             }
         }
     }
