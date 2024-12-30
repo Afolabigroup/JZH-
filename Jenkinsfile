@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven 3.8' // Use the name you configured in Global Tool Configuration
+    }
     stages {
         stage('Check Maven Installation') {
             steps {
